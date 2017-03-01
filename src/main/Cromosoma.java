@@ -1,13 +1,14 @@
 package main;
 
-public class Cromosoma {
-	private boolean[] genes;
-	private int fenotipo;
-	private double aptitud;
-	private double puntuacion;
-	private double acumulada;
+public abstract class Cromosoma {
+	protected boolean[] genes;
+	protected double aptitud;
+	protected double puntuacion;
+	protected double acumulada;
 	public Cromosoma() {
-		
+		aptitud = 0;
+		puntuacion = 0;
+		acumulada = 0;
 	}
 	
 }
