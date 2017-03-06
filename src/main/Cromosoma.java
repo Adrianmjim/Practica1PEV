@@ -1,7 +1,7 @@
 package main;
 
 public abstract class Cromosoma {
-	protected boolean[] genes;
+	protected Gen[] genes;
 	protected double aptitud;
 	protected double puntuacion;
 	protected double acumulada;
