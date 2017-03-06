@@ -9,7 +9,7 @@ public class CromosomaMaxMin extends Cromosoma {
 		this.xmax = xmax;
 		this.xmin = xmin;
 		longitudCromosoma = longitud;
-		this.genes = new boolean[longitudCromosoma];
+		this.genes = new Gen[longitudCromosoma];
 		
 	}
 	public double fenotipo() {
