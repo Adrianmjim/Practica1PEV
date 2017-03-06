@@ -1,4 +1,6 @@
-package main;
+package modelo.cromosomas;
+
+import modelo.genes.Gen;
 
 public abstract class Cromosoma {
 	protected Gen[] genes;
