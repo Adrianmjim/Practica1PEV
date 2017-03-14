@@ -39,9 +39,9 @@ public class CromosomaF2 extends CromosomaBoolean
 	{
 		resuelveFenotipo();
 		double ret;
-		double x = fenotipo[0];
-		double y = fenotipo[1];
-		ret = (2186 - Math.pow((x*x + y - 11),2) - Math.pow((x + y*y - 7),2)) / 2186;
+		double x1 = fenotipo[0];
+		double x2 = fenotipo[1];
+		ret = (-(x2 + 47)*Math.sin(Math.sqrt(Math.abs(x2+x1/2+47)))-x1*Math.sin(Math.sqrt(Math.abs(x1-(x2+47)))));
 		return ret;
 	}
 
