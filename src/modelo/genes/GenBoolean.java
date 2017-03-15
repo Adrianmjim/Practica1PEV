@@ -7,14 +7,14 @@ public class GenBoolean extends Gen
 	
 	private boolean[] alelo;
 	
-	public GenBoolean()
+	public GenBoolean(int tam, double xMax, double xMin, double tol, Random generator)
 	{
-		this.generator = new Random();
-		this.tam = 1;
+		this.generator = generator;
 		this.alelo = new boolean[tam];
-		this.xMax = 0.0;
-		this.xMin = 0.0;
-		this.tol = 0.0;
+		this.tam = tam;
+		this.xMax = xMax;
+		this.xMin = xMin;
+		this.tol = tol;
 		do
 		{
 			for(int i=0; i < tam; ++i)
@@ -26,7 +26,7 @@ public class GenBoolean extends Gen
 	@Override
 	public Gen copia()
 	{
-		GenBoolean copia = new GenBoolean();
+		GenBoolean copia = new GenBoolean(tam, xMax, xMin, tol, generator);
 		for(int i=0; i < this.tam; ++i)
 			copia.alelo[i] = this.alelo[i];
 		
@@ -86,12 +86,10 @@ public class GenBoolean extends Gen
 	public void setTam(int tam) 
 	{
 		this.tam = tam;
-		/*do
-		{
-			for(int i=0; i < tam; ++i)
-				alelo[i] = (this.generator.nextDouble() >= 0.5);
-			
-		} while(!esValido());*/
 	}
-	
+
+	public boolean[] getAlelo() 
+	{
+		return this.alelo;
+	} 
 }

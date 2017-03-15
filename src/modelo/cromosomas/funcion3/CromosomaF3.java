@@ -6,17 +6,17 @@ import modelo.genes.GenBoolean;
 public class CromosomaF3 extends CromosomaBoolean 
 {
 
-	public CromosomaF3(int n)
+	public CromosomaF3(double tol)
 	{
-		this.tol = 0.0;
-		this.nVar = n;
-		this.genes = new GenBoolean[n];
-		this.fenotipo = new double[n];
+		this.tol = tol;
+		this.nVar = 0;
+		this.genes = new GenBoolean[0];
+		this.fenotipo = new double[0];
 	}
 	
 	public CromosomaBoolean copia() 
 	{
-		CromosomaF3 ret = new CromosomaF3(nVar);
+		CromosomaF3 ret = new CromosomaF3(this.lCrom);
 		ret.aptitud = this.aptitud;
 		ret.puntAcum = this.puntAcum;
 		ret.puntuacion = this.puntuacion;

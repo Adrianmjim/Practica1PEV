@@ -6,12 +6,6 @@ import modelo.genes.factoria.FactoriaGenes;
 public abstract class CromosomaBoolean extends Cromosoma
 {
 	
-	/*public CromosomaBoolean()
-	{
-		for (int i = 0; i < this.nVar; ++i)
-			this.genes[i] = FactoriaGenes.getInstancia().creaGenBoolean();
-	}*/
-	
 	public void resuelveFenotipo() 
 	{
 		fenotipo = new double[nVar];
@@ -24,7 +18,7 @@ public abstract class CromosomaBoolean extends Cromosoma
 	
 	public abstract double evalua();
 	
-	public void nuevoGen(double xMax, double xMin)
+	public void aniadeGen(double xMax, double xMin)
 	{
 		int lGen = (int) Math.round((Math.log10(1+((xMax-xMin)/tol))/Math.log10(2)) + 0.5);
 		/*
@@ -32,16 +26,12 @@ public abstract class CromosomaBoolean extends Cromosoma
 		 * Para hacer el redondeo superior, sumamos 0.5 y usamos el redondeo normal.
 		 */
 		lCrom += lGen;	
-		Gen nuevo = FactoriaGenes.getInstancia().creaGenBoolean();
-		nuevo.setxMax(xMax);
-		nuevo.setxMin(xMin);
-		nuevo.setGenerator(generator);
-		nuevo.setTol(tol);
-		nuevo.setTam(lCrom);
+		Gen nuevo = FactoriaGenes.getInstancia().creaGenBoolean(lGen, xMax, xMin, tol, generator);
 		
 		Gen[] nuevosGenes = new Gen[nVar + 1];
-		for(int i=0; i< nVar; ++i)
+		for(int i=0; i< nVar; ++i){
 			nuevosGenes[i] = genes[i];
+		}
 		
 		nuevosGenes[nVar] = nuevo;
 		this.genes = nuevosGenes;

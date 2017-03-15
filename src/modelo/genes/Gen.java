@@ -63,5 +63,6 @@ public abstract class Gen
 	
 	public abstract double fenotipo();
 	
-	public abstract void mutar(double probMutacion); 
+	public abstract void mutar(double probMutacion);
+
 }

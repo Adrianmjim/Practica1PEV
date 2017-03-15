@@ -10,10 +10,15 @@ import modelo.cromosomas.funcion5.CromosomaF5;
 
 public abstract class FactoriaCromosomas 
 {
-	
-	private static FactoriaCromosomas instancia;
+
+	protected double[] xMax;
+	protected double[] xMin;
+	protected double tol;
+	protected int nVar;
 	
 	protected long seed;
+
+	private static FactoriaCromosomas instancia;
 	
 	public static FactoriaCromosomas getInstancia()
 	{
@@ -22,17 +27,27 @@ public abstract class FactoriaCromosomas
 		return instancia;
 	}
 	
-	//public abstract void setSeed(long seed);
+	public abstract void setSeed(long seed);
 	
-	public abstract CromosomaF1 creaCromosomaF1(int n);
+	public abstract CromosomaF1 creaCromosomaF1();
 	
-	public abstract CromosomaF2 creaCromosomaF2(int n);
+	public abstract CromosomaF2 creaCromosomaF2();
 	
-	public abstract CromosomaF3 creaCromosomaF3(int n);
+	public abstract CromosomaF3 creaCromosomaF3();
 	
-	public abstract CromosomaF4 creaCromosomaF4(int n);
+	public abstract CromosomaF4 creaCromosomaF4();
 	
-	public abstract CromosomaF4real creaCromosomaF4real(int n);
+	public abstract CromosomaF4real creaCromosomaF4real();
 	
-	public abstract CromosomaF5 creaCromosomaF5(int n);
+	public abstract CromosomaF5 creaCromosomaF5();
+	
+	public abstract void setxMax(double[] xMax);
+	
+	public abstract void setxMin(double[] xMin);
+	
+	public abstract void setTol(double tol);
+
+	public abstract void setnVar(int nVar);
+	
+	
 }

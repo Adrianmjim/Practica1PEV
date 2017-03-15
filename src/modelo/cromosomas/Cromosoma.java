@@ -32,7 +32,7 @@ public abstract class Cromosoma
 	
 	public abstract double evalua();
 	
-	public abstract void nuevoGen(double xMax, double xMin);
+	public abstract void aniadeGen(double xMax, double xMin);
 
 	public Gen[] getGenes() 
 	{

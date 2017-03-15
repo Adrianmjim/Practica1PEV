@@ -31,9 +31,9 @@ public class AGS
 	
 	private ArrayList<Observador> obs = new ArrayList<Observador>();
 	
-	public AGS(int tam, int maxGen, double probCruce, double probMutacion, Select metodo, Cruce metodoCorte, boolean elitismo, boolean maximizar, long seed)
+	public AGS(int tam, Cromosoma cromosoma, int maxGen, double probCruce, double probMutacion, Select metodo, Cruce metodoCorte, boolean elitismo, boolean maximizar, long seed)
 	{
-		this.pob = new Poblacion(tam);
+		this.pob = new Poblacion(tam, cromosoma);
 		this.maxGeneraciones = maxGen;
 		this.probCruce = probCruce;
 		this.probMutacion = probMutacion;
@@ -62,9 +62,9 @@ public class AGS
 		
 	}
 	
-	public Cromosoma ejecuta() 
+	public Cromosoma ejecuta(Cromosoma cromosoma) 
 	{
-		pob.inicializa();
+		pob.inicializa(cromosoma);
 		this.evaluarPoblacion();
 		while(!this.terminado())
 		{
@@ -84,7 +84,7 @@ public class AGS
 					
 				
 			}
-			this.seleccion();
+			this.seleccion(cromosoma);
 			this.reproduccion();
 			this.mutacion();
 			if(elitismo)
@@ -127,21 +127,21 @@ public class AGS
 		return (numGeneracion >= maxGeneraciones);
 	}
 	
-	private void seleccion()
+	private void seleccion(Cromosoma cromosoma)
 	{
 		switch(metodoSel)
 		{
 			case RULETA:
-				this.seleccionRuleta();
+				this.seleccionRuleta(cromosoma);
 				break;
 			case TORNEO:
-				this.seleccionTorneo();
+				this.seleccionTorneo(cromosoma);
 				break;
 			case ESTOCASTICO:
-				this.seleccionEstocastica();
+				this.seleccionEstocastica(cromosoma);
 				break;
 			default:
-				this.seleccionRuleta();
+				this.seleccionRuleta(cromosoma);
 				break;
 		}
 	}
@@ -155,33 +155,33 @@ public class AGS
 		
 		if (pob.getIndividuos()[0] instanceof CromosomaF1)
 		{
-			hijo1 = FactoriaCromosomas.getInstancia().creaCromosomaF1(this.pob.getIndividuos().length);
-			hijo2 = FactoriaCromosomas.getInstancia().creaCromosomaF1(this.pob.getIndividuos().length);
+			hijo1 = FactoriaCromosomas.getInstancia().creaCromosomaF1();
+			hijo2 = FactoriaCromosomas.getInstancia().creaCromosomaF1();
 		}
 		else if (pob.getIndividuos()[0] instanceof CromosomaF2)
 		{
-			hijo1 = FactoriaCromosomas.getInstancia().creaCromosomaF2(this.pob.getIndividuos().length);
-			hijo2 = FactoriaCromosomas.getInstancia().creaCromosomaF2(this.pob.getIndividuos().length);
+			hijo1 = FactoriaCromosomas.getInstancia().creaCromosomaF2();
+			hijo2 = FactoriaCromosomas.getInstancia().creaCromosomaF2();
 		}
 		else if (pob.getIndividuos()[0] instanceof CromosomaF3)
 		{
-			hijo1 = FactoriaCromosomas.getInstancia().creaCromosomaF3(this.pob.getIndividuos().length);
-			hijo2 = FactoriaCromosomas.getInstancia().creaCromosomaF3(this.pob.getIndividuos().length);
+			hijo1 = FactoriaCromosomas.getInstancia().creaCromosomaF3();
+			hijo2 = FactoriaCromosomas.getInstancia().creaCromosomaF3();
 		}
 		else if (pob.getIndividuos()[0] instanceof CromosomaF4)
 		{
-			hijo1 = FactoriaCromosomas.getInstancia().creaCromosomaF4(this.pob.getIndividuos().length);
-			hijo2 = FactoriaCromosomas.getInstancia().creaCromosomaF4(this.pob.getIndividuos().length);
+			hijo1 = FactoriaCromosomas.getInstancia().creaCromosomaF4();
+			hijo2 = FactoriaCromosomas.getInstancia().creaCromosomaF4();
 		}
 		else if (pob.getIndividuos()[0] instanceof CromosomaF4real)
 		{
-			hijo1 = FactoriaCromosomas.getInstancia().creaCromosomaF4real(this.pob.getIndividuos().length);
-			hijo2 = FactoriaCromosomas.getInstancia().creaCromosomaF4real(this.pob.getIndividuos().length);
+			hijo1 = FactoriaCromosomas.getInstancia().creaCromosomaF4real();
+			hijo2 = FactoriaCromosomas.getInstancia().creaCromosomaF4real();
 		}
 		else
 		{
-			hijo1 = FactoriaCromosomas.getInstancia().creaCromosomaF5(this.pob.getIndividuos().length);
-			hijo2 = FactoriaCromosomas.getInstancia().creaCromosomaF5(this.pob.getIndividuos().length);
+			hijo1 = FactoriaCromosomas.getInstancia().creaCromosomaF5();
+			hijo2 = FactoriaCromosomas.getInstancia().creaCromosomaF5();
 		}
 		
 		for(int i=0; i < this.pob.getTam(); ++i)
@@ -234,33 +234,33 @@ public class AGS
 			
 			if (aux1 instanceof CromosomaF1)
 			{
-				aux3 = FactoriaCromosomas.getInstancia().creaCromosomaF1(this.pob.getIndividuos().length);
-				aux4 = FactoriaCromosomas.getInstancia().creaCromosomaF1(this.pob.getIndividuos().length);
+				aux3 = FactoriaCromosomas.getInstancia().creaCromosomaF1();
+				aux4 = FactoriaCromosomas.getInstancia().creaCromosomaF1();
 			}
 			else if (aux1 instanceof CromosomaF2)
 			{
-				aux3 = FactoriaCromosomas.getInstancia().creaCromosomaF2(this.pob.getIndividuos().length);
-				aux4 = FactoriaCromosomas.getInstancia().creaCromosomaF2(this.pob.getIndividuos().length);
+				aux3 = FactoriaCromosomas.getInstancia().creaCromosomaF2();
+				aux4 = FactoriaCromosomas.getInstancia().creaCromosomaF2();
 			}
 			else if (aux1 instanceof CromosomaF3)
 			{
-				aux3 = FactoriaCromosomas.getInstancia().creaCromosomaF3(this.pob.getIndividuos().length);
-				aux4 = FactoriaCromosomas.getInstancia().creaCromosomaF3(this.pob.getIndividuos().length);
+				aux3 = FactoriaCromosomas.getInstancia().creaCromosomaF3();
+				aux4 = FactoriaCromosomas.getInstancia().creaCromosomaF3();
 			}
 			else if (aux1 instanceof CromosomaF4)
 			{
-				aux3 = FactoriaCromosomas.getInstancia().creaCromosomaF4(this.pob.getIndividuos().length);
-				aux4 = FactoriaCromosomas.getInstancia().creaCromosomaF4(this.pob.getIndividuos().length);
+				aux3 = FactoriaCromosomas.getInstancia().creaCromosomaF4();
+				aux4 = FactoriaCromosomas.getInstancia().creaCromosomaF4();
 			}
 			else if (aux1 instanceof CromosomaF4real)
 			{
-				aux3 = FactoriaCromosomas.getInstancia().creaCromosomaF4real(this.pob.getIndividuos().length);
-				aux4 = FactoriaCromosomas.getInstancia().creaCromosomaF4real(this.pob.getIndividuos().length);
+				aux3 = FactoriaCromosomas.getInstancia().creaCromosomaF4real();
+				aux4 = FactoriaCromosomas.getInstancia().creaCromosomaF4real();
 			}
 			else
 			{
-				aux3 = FactoriaCromosomas.getInstancia().creaCromosomaF5(this.pob.getIndividuos().length);
-				aux4 = FactoriaCromosomas.getInstancia().creaCromosomaF5(this.pob.getIndividuos().length);
+				aux3 = FactoriaCromosomas.getInstancia().creaCromosomaF5();
+				aux4 = FactoriaCromosomas.getInstancia().creaCromosomaF5();
 			}
 			
 			for(int i=0; i < nCortes; ++i)
@@ -451,7 +451,7 @@ public class AGS
 	}
 	
 	
-	private void seleccionRuleta()
+	private void seleccionRuleta(Cromosoma cromosoma)
 	{
 		int[] seleccionados = new int[this.pob.getTam()];
 		double prob;
@@ -470,12 +470,12 @@ public class AGS
 			nuevaPob[i] = this.pob.getIndividuos()[seleccionados[i]].copia();
 		
 		
-		Poblacion nuevaPob2 = new Poblacion(this.pob.getTam());
+		Poblacion nuevaPob2 = new Poblacion(this.pob.getTam(), cromosoma);
 		nuevaPob2.setIndividuos(nuevaPob);
 		this.pob = nuevaPob2;
 	}
 	
-	private void seleccionEstocastica()
+	private void seleccionEstocastica(Cromosoma cromosoma)
 	{
 		int[] seleccionados = new int[this.pob.getTam()];
 		double prob;
@@ -495,12 +495,12 @@ public class AGS
 			nuevaPob[i] = this.pob.getIndividuos()[seleccionados[i]].copia();
 		
 		
-		Poblacion nuevaPob2 = new Poblacion(this.pob.getTam());
+		Poblacion nuevaPob2 = new Poblacion(this.pob.getTam(), cromosoma);
 		nuevaPob2.setIndividuos(nuevaPob);
 		this.pob = nuevaPob2;
 	}
 	
-	private void seleccionTorneo()
+	private void seleccionTorneo(Cromosoma cromosoma)
 	{
 		int[] seleccionados = new int[this.pob.getTam()];
 		int posMejor;
@@ -564,7 +564,7 @@ public class AGS
 			nuevaPob[i] = this.pob.getIndividuos()[seleccionados[i]].copia();
 		
 		
-		Poblacion nuevaPob2 = new Poblacion(this.pob.getTam());
+		Poblacion nuevaPob2 = new Poblacion(this.pob.getTam(), cromosoma);
 		nuevaPob2.setIndividuos(nuevaPob);
 		this.pob = nuevaPob2;
 	}

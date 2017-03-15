@@ -6,17 +6,17 @@ import modelo.genes.GenBoolean;
 public class CromosomaF2 extends CromosomaBoolean 
 {
 
-	public CromosomaF2(int n)
+	public CromosomaF2(double tol)
 	{
-		this.tol = 0.0;
-		this.nVar = n;
-		this.genes = new GenBoolean[n];
-		this.fenotipo = new double[n];
+		this.tol = tol;
+		this.nVar = 0;
+		this.genes = new GenBoolean[0];
+		this.fenotipo = new double[0];
 	}
 	
 	public CromosomaBoolean copia() 
 	{
-		CromosomaF2 ret = new CromosomaF2(nVar);
+		CromosomaF2 ret = new CromosomaF2(this.lCrom);
 		ret.aptitud = this.aptitud;
 		ret.puntAcum = this.puntAcum;
 		ret.puntuacion = this.puntuacion;
@@ -41,7 +41,7 @@ public class CromosomaF2 extends CromosomaBoolean
 		double ret;
 		double x1 = fenotipo[0];
 		double x2 = fenotipo[1];
-		ret = (-(x2 + 47)*Math.sin(Math.sqrt(Math.abs(x2+x1/2+47)))-x1*Math.sin(Math.sqrt(Math.abs(x1-(x2+47)))));
+		ret = (-(x2 + 47)*Math.sin(Math.sqrt(Math.abs(x2+(x1/2)+47)))-x1*Math.sin(Math.sqrt(Math.abs(x1-(x2+47)))));
 		return ret;
 	}
 

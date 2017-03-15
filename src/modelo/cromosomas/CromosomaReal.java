@@ -1,17 +1,10 @@
 package modelo.cromosomas;
 
 import modelo.genes.Gen;
-import modelo.genes.GenReal;
 import modelo.genes.factoria.FactoriaGenes;
 
 public abstract class CromosomaReal extends Cromosoma
 {
-	
-	public CromosomaReal()
-	{
-		for (int i = 0; i < this.nVar; ++i)
-			this.genes[i] = new GenReal();
-	}
 	
 	public void resuelveFenotipo() 
 	{
@@ -25,14 +18,9 @@ public abstract class CromosomaReal extends Cromosoma
 	
 	public abstract double evalua();
 	
-	public void nuevoGen(double xMax, double xMin)
+	public void aniadeGen(double xMax, double xMin)
 	{
-		Gen nuevo = FactoriaGenes.getInstancia().creaGenReal();
-		nuevo.setxMax(xMax);
-		nuevo.setxMin(xMin);
-		nuevo.setTol(tol);
-		nuevo.setGenerator(generator);
-		nuevo.setTam(1);
+		Gen nuevo = FactoriaGenes.getInstancia().creaGenReal(1, xMax, xMin, tol, generator);
 		
 		Gen[] nuevosGenes = new Gen[nVar + 1];
 		for(int i=0; i< nVar; ++i)

@@ -7,17 +7,17 @@ import modelo.genes.Gen;
 public class CromosomaF4real extends CromosomaReal 
 {
 
-	public CromosomaF4real(int n)
+	public CromosomaF4real(double tol)
 	{
-		this.tol = 0.0;
-		this.nVar = n;
-		this.genes = new Gen[n];
-		this.fenotipo = new double[n];
+		this.tol = tol;
+		this.nVar = 0;
+		this.genes = new Gen[0];
+		this.fenotipo = new double[0];
 	}
 	
 	public Cromosoma copia() 
 	{
-		CromosomaF4real ret = new CromosomaF4real(nVar);
+		CromosomaF4real ret = new CromosomaF4real(this.lCrom);
 		ret.aptitud = this.aptitud;
 		ret.puntAcum = this.puntAcum;
 		ret.puntuacion = this.puntuacion;

@@ -1,5 +1,7 @@
 package modelo.genes.factoria;
 
+import java.util.Random;
+
 import modelo.genes.GenBoolean;
 import modelo.genes.GenReal;
 import modelo.genes.factoria.imp.FactoriaGenesImp;
@@ -15,7 +17,7 @@ public abstract class FactoriaGenes
 		return instancia;
 	}
 	
-	public abstract GenBoolean creaGenBoolean();
+	public abstract GenBoolean creaGenBoolean(int tam, double xMax, double xMin, double tol, Random generator);
 	
-	public abstract GenReal creaGenReal();
+	public abstract GenReal creaGenReal(int tam, double xMax, double xMin, double tol, Random generator);
 }

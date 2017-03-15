@@ -7,13 +7,13 @@ public class GenReal extends Gen
 	
 	private double alelo;
 	
-	public GenReal()
+	public GenReal(int tam, double xMax, double xMin, double tol, Random generator)
 	{
-		this.generator = new Random();
-		this.tam = 1;
-		this.xMax = 0.0;
-		this.xMin = 0.0;
-		this.tol = 0.0;
+		this.generator = generator;
+		this.tam = tam;
+		this.xMax = xMax;
+		this.xMin = xMin;
+		this.tol = tol;
 		do
 		{
 			alelo = xMin + (generator.nextDouble()*xMax);
@@ -23,7 +23,7 @@ public class GenReal extends Gen
 	@Override
 	public Gen copia() 
 	{
-		GenReal copia = new GenReal();
+		GenReal copia = new GenReal(tam, xMax, xMin, tol, generator);
 		copia.alelo = this.alelo;
 		return copia;
 	}
