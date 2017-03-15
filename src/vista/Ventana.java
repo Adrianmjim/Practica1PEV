@@ -25,6 +25,7 @@ import modelo.Observador;
 import modelo.Poblacion;
 import modelo.Select;
 import modelo.cromosomas.Cromosoma;
+import modelo.cromosomas.funcion3.CromosomaF3;
 import controlador.Controlador;
 
 public class Ventana extends JFrame implements Observador, ActionListener
@@ -65,9 +66,9 @@ public class Ventana extends JFrame implements Observador, ActionListener
 	private double[] valorElMejor;
 	private int iteracion;
 	
-	public Ventana(Controlador c)
+	public Ventana()
 	{
-		this.c = c;
+		this.c = new Controlador();;
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		this.setTitle("Practica 1 PEV");
@@ -289,8 +290,14 @@ public class Ventana extends JFrame implements Observador, ActionListener
 	public void onAGSTerminado(Cromosoma elMejor) 
 	{
 		String s = "Genes:\n";
-		for(int i=0; i < elMejor.getnVar(); ++i)
-			s += "   x(" + i + ") = " + elMejor.getFenotipo()[i] + "\n";
+		if (elMejor instanceof CromosomaF3)
+		{
+			s += "  x = " + elMejor.getFenotipo()[0] + "\n";
+			s += "  y = " + elMejor.getFenotipo()[1] + "\n";
+		}
+		else
+			for(int i=0; i < elMejor.getnVar(); ++i)
+				s += "   x(" + (i + 1) + ") = " + elMejor.getFenotipo()[i] + "\n";
 		
 		s += "Maximo/Minimo obtenido:\n";
 		s += "   f = " + elMejor.evalua() + "\n";

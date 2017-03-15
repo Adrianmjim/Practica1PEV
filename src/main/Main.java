@@ -3,15 +3,13 @@ package main;
 import java.awt.EventQueue;
 
 import vista.Ventana;
-import controlador.Controlador;
 
 public class Main 
 {
 
 	public static void main(String[] args) 
 	{
-		Controlador controlador = new Controlador();
-		final Ventana v = new Ventana(controlador);
+		final Ventana v = new Ventana();
 		
 		EventQueue.invokeLater(new Runnable()
 		{
