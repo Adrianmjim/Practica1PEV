@@ -1,12 +1,12 @@
 package vista;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.GridLayout;
+
+import org.math.plot.Plot2DPanel;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -35,17 +35,13 @@ public class VentanaPrincipal extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 500);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(1, 2, 0, 0));
+		contentPane.setLayout(new FlowLayout());
 		
 		JPanel panel = new PanelOpciones();
-		GridLayout gridLayout = (GridLayout) panel.getLayout();
-		gridLayout.setColumns(2);
-		gridLayout.setRows(1);
 		contentPane.add(panel);
 		
-		JPanel panel_1 = new JPanel();
+		Plot2DPanel panel_1 = new Plot2DPanel();
 		panel.add(panel_1);
 	}
 
