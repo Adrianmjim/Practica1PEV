@@ -27,8 +27,6 @@ public abstract class FactoriaCromosomas
 		return instancia;
 	}
 	
-	public abstract void setSeed(long seed);
-	
 	public abstract CromosomaF1 creaCromosomaF1();
 	
 	public abstract CromosomaF2 creaCromosomaF2();

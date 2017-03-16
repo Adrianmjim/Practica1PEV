@@ -34,6 +34,7 @@ public class AGS
 	public AGS(int tam, Cromosoma cromosoma, int maxGen, double probCruce, double probMutacion, Select metodo, Cruce metodoCorte, boolean elitismo, boolean maximizar, long seed)
 	{
 		this.pob = new Poblacion(tam, cromosoma);
+		this.pob.setSeed(seed);
 		this.maxGeneraciones = maxGen;
 		this.probCruce = probCruce;
 		this.probMutacion = probMutacion;
@@ -45,7 +46,6 @@ public class AGS
 		this.elitismo = elitismo;
 		this.maximizar = maximizar;
 		this.generator = new Random(seed);
-		//System.out.println("seed: " + seed);
 	}
 	
 	public void addObserver(Observador o)

@@ -41,7 +41,7 @@ public class CromosomaF2 extends CromosomaBoolean
 		double ret;
 		double x1 = fenotipo[0];
 		double x2 = fenotipo[1];
-		ret = (-(x2 + 47)*Math.sin(Math.sqrt(Math.abs(x2+(x1/2)+47)))-x1*Math.sin(Math.sqrt(Math.abs(x1-(x2+47)))));
+		ret = (-(x2 + 47)*Math.sin(Math.sqrt(Math.abs(x2+(x1/2)+47)))-(x1*Math.sin(Math.sqrt(Math.abs(x1-(x2+47))))));
 		return ret;
 	}
 

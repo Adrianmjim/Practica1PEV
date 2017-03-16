@@ -12,6 +12,7 @@ public class Poblacion
 {
 	private Cromosoma[] individuos;
 	private int tam;
+	private long seed;
 
 	public Poblacion(int n, Cromosoma cromosoma)
 	{
@@ -29,11 +30,14 @@ public class Poblacion
 		else
 			this.individuos = new CromosomaF5[tam];
 	}
-	
+
 	public void inicializa(Cromosoma cromosoma)
 	{
 		for(int i=0; i < tam; ++i)
+		{
 			individuos[i] = cromosoma;
+			individuos[i].setSeed(this.seed);
+		}
 		
 	}
 	
@@ -50,6 +54,11 @@ public class Poblacion
 	public Cromosoma[] getIndividuos() 
 	{
 		return individuos;
+	}
+	
+	public void setSeed(long seed) 
+	{
+		this.seed = seed;
 	}
 
 }

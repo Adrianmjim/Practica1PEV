@@ -96,7 +96,7 @@ public class Ventana extends JFrame implements Observador, ActionListener
 		cbElitismo = new JCheckBox();
 		
 		run = new JButton("Ejecuta este AG");
-		reRun = new JButton("Relanza la ejecución de este AG");
+		reRun = new JButton("Relanza la ejecuciÃ³n de este AG");
 		stop = new JButton("Elimina este AG");
 		
 		run.addActionListener(this);

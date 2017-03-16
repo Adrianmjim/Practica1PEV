@@ -45,7 +45,7 @@ public class PanelOpciones extends JPanel {
 	public PanelOpciones() {
 		setLayout(new GridLayout(12, 2, 0, 0));
 		
-		add(new JLabel("Funcion: "));
+		add(new JLabel("Función: "));
 		Funcion aux[] = {Funcion.FUNCION1,Funcion.FUNCION2,Funcion.FUNCION3,Funcion.FUNCION4,Funcion.FUNCION4R,Funcion.FUNCION5};
 		boxFuncion = new JComboBox(aux);
 		add(boxFuncion);
@@ -58,10 +58,10 @@ public class PanelOpciones extends JPanel {
 		add(new JLabel("Iteraciones: "));
 		iteraciones = new JTextField("100");
 		add(iteraciones);
-		add(new JLabel("%Cruces: "));
+		add(new JLabel("% Cruces: "));
 		cruces = new JTextField("60");
 		add(cruces);
-		add(new JLabel("%Mutación: "));
+		add(new JLabel("% Mutación: "));
 		mutacion = new JTextField("5");
 		add(mutacion);
 		add(new JLabel("Semilla: "));

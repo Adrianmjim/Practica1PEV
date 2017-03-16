@@ -82,12 +82,6 @@ public class FactoriaCromosomasImp extends FactoriaCromosomas
 		
 		return crom;
 	}
-	
-	@Override
-	public void setSeed(long seed)
-	{
-		this.seed = seed;
-	}
 
 	@Override
 	public void setxMax(double[] xMax) 
