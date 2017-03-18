@@ -38,7 +38,7 @@ public class Ventana extends JFrame implements Observador, ActionListener
 	private static final long serialVersionUID = -4601737718372115147L;
 	
 	private Controlador c;
-	private JComboBox<String> cbFuncion; 
+	private JComboBox<Funcion> cbFuncion; 
 	private JComboBox<Cruce> cbCruce;
 	private JComboBox<String> cbSeleccion;
 	private JTextField tfTolerancia;
@@ -55,8 +55,8 @@ public class Ventana extends JFrame implements Observador, ActionListener
 	private JButton reRun;
 	private JButton stop;
 	
-	private static String[] funciones = {"FUNCION 1", "FUNCION 2", "FUNCION 3", "FUNCION 4 Booleana", "FUNCION 4 Real", "FUNCION 5"};
-	private static Cruce[] crucesB = {Cruce.MONOPUNTO, Cruce.MULTIPUNTO, Cruce.UNIFORME, Cruce.ARITMETICO, Cruce.SBX};
+	private static Funcion[] funciones = {Funcion.FUNCION1, Funcion.FUNCION2,Funcion.FUNCION3,Funcion.FUNCION4, Funcion.FUNCION4R, Funcion.FUNCION5};
+	private static Cruce[] crucesB = {Cruce.MONOPUNTO, Cruce.MULTIPUNTO, Cruce.UNIFORME};
 	private static String[] selecciones = {"RULETA", "TORNEO DETERMINISTA", "TORNEO PROBABILISTA", "ESTOCASTICO"};
 	
 	private Plot2DPanel plot;
@@ -74,7 +74,7 @@ public class Ventana extends JFrame implements Observador, ActionListener
 		
 		this.setTitle("Practica 1");
 		
-		cbFuncion = new JComboBox<String>(funciones);
+		cbFuncion = new JComboBox<Funcion>(funciones);
 		cbFuncion.setSelectedIndex(0);
 		cbFuncion.addActionListener(this);
 		cbCruce = new JComboBox<Cruce>(crucesB);
@@ -194,29 +194,6 @@ public class Ventana extends JFrame implements Observador, ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
-		Funcion funcion = null;//Funcion.FUNCION1, Funcion.FUNCION2,Funcion.FUNCION3,Funcion.FUNCION4, Funcion.FUNCION4R, Funcion.FUNCION5
-		switch ((String)cbFuncion.getSelectedItem())
-		{
-			case "FUNCION 1":
-				funcion = Funcion.FUNCION1;
-				break;
-			case "FUNCION 2":
-				funcion = Funcion.FUNCION2;
-				break;
-			case "FUNCION 3":
-				funcion = Funcion.FUNCION3;
-				break;
-			case "FUNCION 4 Booleana":
-				funcion = Funcion.FUNCION4;
-				break;
-			case "FUNCION 4 Real":
-				funcion = Funcion.FUNCION4R;
-				break;
-			case "FUNCION 5":
-				funcion = Funcion.FUNCION5;
-				break;
-		}
-		
 		Select seleccion = null;
 		switch ((String) cbSeleccion.getSelectedItem())
 		{
@@ -239,7 +216,7 @@ public class Ventana extends JFrame implements Observador, ActionListener
 		{
 			try
 			{
-				c.setParametersRun(funcion, Integer.parseInt(tfN.getText()), Double.parseDouble(tfTolerancia.getText()), Integer.parseInt(tfPoblacion.getText()), Integer.parseInt(tfGeneraciones.getText()), Double.parseDouble(tfprobCruces.getText())/100, Double.parseDouble(tfprobMutacion.getText())/100, Long.parseLong(tfSemilla.getText()), (Cruce)cbCruce.getSelectedItem(), seleccion, cbElitismo.isSelected());
+				c.setParametersRun((Funcion)cbFuncion.getSelectedItem(), Integer.parseInt(tfN.getText()), Double.parseDouble(tfTolerancia.getText()), Integer.parseInt(tfPoblacion.getText()), Integer.parseInt(tfGeneraciones.getText()), Double.parseDouble(tfprobCruces.getText())/100, Double.parseDouble(tfprobMutacion.getText())/100, Long.parseLong(tfSemilla.getText()), (Cruce)cbCruce.getSelectedItem(), seleccion, cbElitismo.isSelected());
 				taResultados.setForeground(Color.BLACK);
 			}
 			catch(NumberFormatException ex)
@@ -270,22 +247,14 @@ public class Ventana extends JFrame implements Observador, ActionListener
 			valorElMejor = new double[Integer.parseInt(tfGeneraciones.getText())];
 			plot.removeAllPlots();
 			c.addObserver(this);
-			try
-			{
-				c.lanzaAGS();
-			}
-			catch(ClassCastException ex)
-			{
-				taResultados.setText("ESTE TIPO DE CRUCE SÓLO PUEDE USARSE CON UN ALGORITMO DE CODIFICACIÓN REAL (FUNCIÓN 4 real)");
-				taResultados.setForeground(Color.RED);
-				return;
-			}
+			c.lanzaAGS();
+			
 		}
 		else if(reRun == source)
 		{
 			try
 			{
-				c.setParametersReRun(funcion, Integer.parseInt(tfN.getText()), Double.parseDouble(tfTolerancia.getText()), Integer.parseInt(tfPoblacion.getText()), Integer.parseInt(tfGeneraciones.getText()), Double.parseDouble(tfprobCruces.getText())/100, Double.parseDouble(tfprobMutacion.getText())/100, Long.parseLong(tfSemilla.getText()), (Cruce)cbCruce.getSelectedItem(), seleccion, cbElitismo.isSelected());
+				c.setParametersReRun((Funcion)cbFuncion.getSelectedItem(), Integer.parseInt(tfN.getText()), Double.parseDouble(tfTolerancia.getText()), Integer.parseInt(tfPoblacion.getText()), Integer.parseInt(tfGeneraciones.getText()), Double.parseDouble(tfprobCruces.getText())/100, Double.parseDouble(tfprobMutacion.getText())/100, Long.parseLong(tfSemilla.getText()), (Cruce)cbCruce.getSelectedItem(), seleccion, cbElitismo.isSelected());
 				taResultados.setForeground(Color.BLACK);
 			}
 			catch(NumberFormatException ex)
@@ -309,12 +278,6 @@ public class Ventana extends JFrame implements Observador, ActionListener
 				taResultados.setForeground(Color.RED);
 				return;
 			}
-			catch(ClassCastException ex)
-			{
-				taResultados.setText("ESTE TIPO DE CRUCE SÓLO PUEDE USARSE CON UN ALGORITMO DE CODIFICACIÓN REAL (FUNCIÓN 4 real)");
-				taResultados.setForeground(Color.RED);
-				return;
-			}
 			iteracion = 0;
 			ejeGeneracion = new double[Integer.parseInt(tfGeneraciones.getText())];
 			valorMedia = new double[Integer.parseInt(tfGeneraciones.getText())];
@@ -322,16 +285,8 @@ public class Ventana extends JFrame implements Observador, ActionListener
 			valorElMejor = new double[Integer.parseInt(tfGeneraciones.getText())];
 			plot.removeAllPlots();
 			c.addObserver(this);
-			try
-			{
-				c.lanzaAGS();
-			}
-			catch(ClassCastException ex)
-			{
-				taResultados.setText("ESTE TIPO DE CRUCE SÓLO PUEDE USARSE CON UN ALGORITMO DE CODIFICACIÓN REAL (FUNCIÓN 4 real)");
-				taResultados.setForeground(Color.RED);
-				return;
-			}
+			c.lanzaAGS();
+			
 		}
 		else if(stop == source)
 		{
