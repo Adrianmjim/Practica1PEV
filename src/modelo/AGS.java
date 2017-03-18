@@ -134,8 +134,11 @@ public class AGS
 			case RULETA:
 				this.seleccionRuleta(cromosoma);
 				break;
-			case TORNEO:
-				this.seleccionTorneo(cromosoma);
+			case TORNEO_D:
+				this.seleccionTorneoDeterminista(cromosoma);
+				break;
+			case TORNEO_P:
+				this.seleccionTorneoProbabilista(cromosoma);
 				break;
 			case ESTOCASTICO:
 				this.seleccionEstocastica(cromosoma);
@@ -500,14 +503,13 @@ public class AGS
 		this.pob = nuevaPob2;
 	}
 	
-	private void seleccionTorneo(Cromosoma cromosoma)
+	private void seleccionTorneoDeterminista(Cromosoma cromosoma)
 	{
 		int[] seleccionados = new int[this.pob.getTam()];
 		int posMejor;
 		int indexA, indexB, indexC;
 		for(int i=0; i < this.pob.getTam(); ++i)
 		{
-			// Torneo con muestreo diferenciado (cada elemento solo una vez)
 			indexA = (int) (generator.nextDouble() * this.pob.getTam());
 			do
 			{
@@ -552,10 +554,7 @@ public class AGS
 						posMejor = indexC;
 					
 					else
-						posMejor = indexB;
-					
-				
-			
+						posMejor = indexB;		
 			
 			seleccionados[i] = posMejor;
 		}
@@ -564,6 +563,65 @@ public class AGS
 			nuevaPob[i] = this.pob.getIndividuos()[seleccionados[i]].copia();
 		
 		
+		Poblacion nuevaPob2 = new Poblacion(this.pob.getTam(), cromosoma);
+		nuevaPob2.setIndividuos(nuevaPob);
+		this.pob = nuevaPob2;
+	}
+	
+	private void seleccionTorneoProbabilista(Cromosoma cromosoma)
+	{
+		int[] seleccionados = new int[this.pob.getTam()];
+		int posMejor;
+		int indexA, indexB;
+		double aleatorio;
+		for (int i = 0; i < this.pob.getTam(); ++i)
+		{
+			indexA = (int) (generator.nextDouble() * this.pob.getTam());
+			indexB = (int) (generator.nextDouble() * this.pob.getTam());
+			aleatorio = (generator.nextDouble() * this.pob.getTam());
+			
+			if (this.maximizar)
+			{
+				if (aleatorio > this.pob.getIndividuos()[i].getSeed())
+				{
+					if (indexA > indexB)
+						posMejor = indexA;
+					else
+						posMejor = indexB;
+				}
+				else
+				{
+					if (indexA > indexB)
+						posMejor = indexB;
+					else
+						posMejor = indexA;
+				}
+			}
+			else
+			{
+				if (aleatorio < this.pob.getIndividuos()[i].getSeed())
+				{
+					if (indexA < indexB)
+						posMejor = indexA;
+					else
+						posMejor = indexB;
+				}
+				else
+				{
+					if (indexA < indexB)
+						posMejor = indexB;
+					else
+						posMejor = indexA;
+				}
+			}
+			
+			seleccionados[i] = posMejor;
+		}
+		
+		Cromosoma[] nuevaPob = new Cromosoma[this.pob.getTam()];
+		for(int i=0; i < this.pob.getTam(); ++i)
+			nuevaPob[i] = this.pob.getIndividuos()[seleccionados[i]].copia();
+				
 		Poblacion nuevaPob2 = new Poblacion(this.pob.getTam(), cromosoma);
 		nuevaPob2.setIndividuos(nuevaPob);
 		this.pob = nuevaPob2;

@@ -6,6 +6,7 @@ import modelo.genes.Gen;
 
 public abstract class Cromosoma 
 {
+
 	protected Gen[] genes;
 	protected double puntAcum;
 	protected double puntuacion;
@@ -118,6 +119,11 @@ public abstract class Cromosoma
 	{
 		this.seed = seed;
 		generator = new Random(seed);
+	}
+	
+	public long getSeed() 
+	{
+		return this.seed;
 	}
 	
 }

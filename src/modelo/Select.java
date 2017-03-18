@@ -2,5 +2,5 @@ package modelo;
 
 public enum Select 
 {
-	RULETA, TORNEO, ESTOCASTICO
+	RULETA, TORNEO_D, TORNEO_P, ESTOCASTICO
 }
