@@ -14,7 +14,6 @@ public class FactoriaCromosomasImp extends FactoriaCromosomas
 	@Override
 	public CromosomaF1 creaCromosomaF1() 
 	{
-		// TODO Auto-generated method stub
 		CromosomaF1 crom = new CromosomaF1(this.tol);
 		crom.setSeed(this.seed);
 		for(int i = 0; i < nVar; ++i)
@@ -26,7 +25,6 @@ public class FactoriaCromosomasImp extends FactoriaCromosomas
 	@Override
 	public CromosomaF2 creaCromosomaF2() 
 	{
-		// TODO Auto-generated method stub
 		CromosomaF2 crom = new CromosomaF2(this.tol);
 		crom.setSeed(this.seed);
 		for(int i = 0; i < nVar; ++i)
@@ -38,7 +36,6 @@ public class FactoriaCromosomasImp extends FactoriaCromosomas
 	@Override
 	public CromosomaF3 creaCromosomaF3() 
 	{
-		// TODO Auto-generated method stub
 		CromosomaF3 crom = new CromosomaF3(this.tol);
 		crom.setSeed(this.seed);
 		for(int i = 0; i < nVar; ++i)
@@ -50,7 +47,6 @@ public class FactoriaCromosomasImp extends FactoriaCromosomas
 	@Override
 	public CromosomaF4 creaCromosomaF4() 
 	{
-		// TODO Auto-generated method stub
 		CromosomaF4 crom = new CromosomaF4(this.tol);
 		crom.setSeed(this.seed);
 		for(int i = 0; i < nVar; ++i)
@@ -62,7 +58,6 @@ public class FactoriaCromosomasImp extends FactoriaCromosomas
 	@Override
 	public CromosomaF4real creaCromosomaF4real() 
 	{
-		// TODO Auto-generated method stub
 		CromosomaF4real crom = new CromosomaF4real(this.tol);
 		crom.setSeed(this.seed);
 		for(int i = 0; i < nVar; ++i)
@@ -74,7 +69,6 @@ public class FactoriaCromosomasImp extends FactoriaCromosomas
 	@Override
 	public CromosomaF5 creaCromosomaF5() 
 	{
-		// TODO Auto-generated method stub
 		CromosomaF5 crom = new CromosomaF5(this.tol);
 		crom.setSeed(this.seed);
 		for(int i = 0; i < nVar; ++i)
