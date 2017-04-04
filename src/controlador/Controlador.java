@@ -1,9 +1,9 @@
 package controlador;
 
 import modelo.AGS;
-import modelo.Observador;
 import modelo.Cruce;
 import modelo.Funcion;
+import modelo.Observador;
 import modelo.Select;
 import modelo.cromosomas.Cromosoma;
 import modelo.cromosomas.factoria.FactoriaCromosomas;

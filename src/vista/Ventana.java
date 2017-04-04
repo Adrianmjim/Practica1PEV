@@ -17,8 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import org.math.plot.Plot2DPanel;
-
 import modelo.Cruce;
 import modelo.Funcion;
 import modelo.Observador;
@@ -27,6 +25,9 @@ import modelo.Select;
 import modelo.cromosomas.Cromosoma;
 import modelo.cromosomas.funcion1.CromosomaF1;
 import modelo.cromosomas.funcion3.CromosomaF3;
+
+import org.math.plot.Plot2DPanel;
+
 import controlador.Controlador;
 
 public class Ventana extends JFrame implements Observador, ActionListener
